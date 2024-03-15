@@ -2,7 +2,7 @@ baseurl: https://example.com
 languageCode: en-us
 theme: hugo-theme-stack
 paginate: 3
-title: Example Site
+title: XinYu's blog
 copyright: Example Person
 
 # Theme i18n support
@@ -63,7 +63,7 @@ params:
 
     sidebar:
         emoji: 🍥
-        subtitle: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        subtitle: 这是欣羽的博客网站
         avatar:
             enabled: true
             local: true
