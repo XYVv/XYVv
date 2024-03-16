@@ -9,10 +9,6 @@ categories = [
 tags = [
     "C语言","关键字篇"
 ]
-series = ["指南"]
-aliases = ["来自宋欣羽"]
-image = "pawel-czerwinski-8uZPynIu-rQ-unsplash.jpg"
-
 +++
 ![](1.jpg)
 ## C语言——关键字
