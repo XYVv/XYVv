@@ -12,6 +12,8 @@ tags = [
 +++
 ![](1.png)
 
+[TOC]
+
 # 数据结构
 
 ## 1.绪论
@@ -252,4 +254,424 @@ n3=n1+n2+1
 - 如何判定添加虚段的数目？
 
 设度为0的节点有N0个，度为k的节点有Nk个，则对严格的k叉树有 N0 = (k-1)Nk+1 ，由此得 **NK = （N0-1）/(k-1)**  (Nk必须为整数)
+
+============================================================================================================================================================================================================================================================================================================================================================================
+
+# **数据类型**:
+
+在C语言中，有各种不同的数据类型，以下是一些常见的C数据类型：
+
+1. **基本数据类型**：
+   - `char`: 用于存储字符，通常占用1个字节。
+   - `int`: 用于存储整数，通常占用4个字节。
+   - `float`: 用于存储单精度浮点数，通常占用4个字节。
+   - `double`: 用于存储双精度浮点数，通常占用8个字节。
+
+2. **修饰符数据类型**：
+   - `signed`: 表示有符号整数。
+   - `unsigned`: 表示无符号整数。
+   - `short`: 缩短整数的存储范围。
+   - `long`: 增加整数的存储范围。
+   - `long long`: 提供更大范围的整数存储。
+
+3. **派生数据类型**：
+   - `数组`: 用于存储相同类型的多个元素。
+   - `指针`: 存储变量的地址。
+   - `结构体`: 可以存储不同类型的数据。
+   - `共用体`: 允许在相同的内存位置存储不同的数据类型。
+   - `枚举`: 用于定义命名整数常量。
+
+4. **自定义数据类型**：
+   - `typedef`: 用于为现有数据类型创建新名称。
+
+5. **布尔数据类型**：
+   - C语言标准中没有内置的布尔类型，通常使用整数类型（如int）来表示布尔值，0表示false，非零值表示true。
+
+# **数据结构**:
+
+这是关于常见数据结构的简要概述：
+
+1. **数组（Array）**：
+   - 线性数据结构，元素类型相同，通过索引访问。
+   - 内存中连续存储，支持快速随机访问。
+
+2. **链表（Linked List）**：
+   - 由节点组成，每个节点包含数据和指向下一个节点的指针。
+   - 可以是单向、双向或循环的，动态分配内存，插入和删除操作高效。
+
+3. **栈（Stack）**：
+   - 后进先出（LIFO）的数据结构，仅允许在栈顶进行插入和删除操作。
+   - 常用于表达式求值、函数调用等。
+
+4. **队列（Queue）**：
+   - 先进先出（FIFO）的数据结构，允许在队尾插入元素，在队头删除元素。
+   - 用于模拟排队、任务调度等场景。
+
+5. **树（Tree）**：
+   - 非线性数据结构，由节点组成，每个节点可以有零个或多个子节点。
+   - 常见类型有二叉树、二叉搜索树、平衡二叉树等。
+
+6. **图（Graph）**：
+   - 由节点（顶点）和边组成，用于表示对象之间的关系。
+   - 可以是有向的或无向的，常用于网络路由、社交网络分析等。
+
+7. **堆（Heap）**：
+   - 一种特殊的树形数据结构，常用于实现优先队列。
+   - 分为最大堆和最小堆，支持高效的插入和删除操作。
+
+8. **哈希表（Hash Table）**：
+   - 通过哈希函数将键映射到值，实现快速的查找、插入和删除操作。
+   - 常用于实现字典、缓存等，具有常数时间复杂度的查找操作。
+
+这些数据结构在计算机科学和软件开发中扮演着重要角色，每种结构都有其独特的特性和适用场景。深入了解这些数据结构将有助于理解和设计高效的算法和程序。
+
+在C语言中，虽然没有内置的高级数据结构（如Python中的列表或字典），但可以通过使用指针和自定义数据结构来实现各种数据结构。以下是在C语言中实现常见数据结构的一些基本概念和示例：
+
+# **数组**：
+
+- 在C语言中，数组是一组相同类型的元素的集合，可以通过下标来访问元素。
+
+- 示例：
+
+  ```c
+  int arr[5] = {1, 2, 3, 4, 5};
+  ```
+
+# **链表**：
+
+- 链表是由节点组成的数据结构，在C语言中通常使用结构体和指针来表示节点。
+
+- 示例：
+
+  ```c
+  struct Node {
+      int data;
+      struct Node* next;
+  };
+  
+  struct Node* head = NULL; // 头指针初始化为空
+  ```
+
+以下是C语言中几种常见链表类型的简单示例代码，包括单链表、双链表和循环链表的基本操作：
+
+### **单链表（Singly Linked List）**：
+
+1. **特点**：
+   - 每个节点包含一个数据域和一个指向下一个节点的指针。
+   - 最后一个节点的指针指向 NULL，表示链表的结束。
+2. **优点**：
+   - 简单且易于实现。
+   - 插入和删除节点的操作效率高。
+3. **缺点**：
+   - 无法直接访问前一个节点，需要从头节点开始遍历链表。
+   - 只能单向遍历链表。
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+void append(struct Node** head_ref, int new_data) {
+    struct Node* new_node = (struct Node*)malloc(sizeof(struct Node));
+    struct Node* last = *head_ref;
+    
+    new_node->data = new_data;
+    new_node->next = NULL;
+    
+    if (*head_ref == NULL) {
+        *head_ref = new_node;
+        return;
+    }
+    
+    while (last->next != NULL) {
+        last = last->next;
+    }
+    
+    last->next = new_node;
+}
+
+void printList(struct Node* node) {
+    while (node != NULL) {
+        printf("%d -> ", node->data);
+        node = node->next;
+    }
+    printf("NULL\n");
+}
+
+int main() {
+    struct Node* head = NULL;
+    
+    append(&head, 1);
+    append(&head, 2);
+    append(&head, 3);
+    
+    printf("Singly Linked List: ");
+    printList(head);
+    
+    return 0;
+}
+```
+
+### **双链表（Doubly Linked List）**：
+
+1. **特点**：
+   - 每个节点包含一个数据域、一个指向下一个节点的指针和一个指向前一个节点的指针。
+   - 头节点的前驱指针指向 NULL，尾节点的后继指针指向 NULL。
+2. **优点**：
+   - 可以双向遍历链表，提供更多操作灵活性。
+   - 删除操作相对于单链表更高效，因为可以直接访问前一个节点。
+3. **缺点**：
+   - 需要额外的指针空间，可能占用更多内存。
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node* prev;
+    struct Node* next;
+};
+
+void append(struct Node** head_ref, int new_data) {
+    struct Node* new_node = (struct Node*)malloc(sizeof(struct Node));
+    struct Node* last = *head_ref;
+    
+    new_node->data = new_data;
+    new_node->next = NULL;
+    
+    if (*head_ref == NULL) {
+        *head_ref = new_node;
+        return;
+    }
+    
+    while (last->next != NULL) {
+        last = last->next;
+    }
+    
+    last->next = new_node;
+    new_node->prev = last;
+}
+
+void printList(struct Node* node) {
+    while (node != NULL) {
+        printf("%d -> ", node->data);
+        node = node->next;
+    }
+    printf("NULL\n");
+}
+
+int main() {
+    struct Node* head = NULL;
+    
+    append(&head, 1);
+    append(&head, 2);
+    append(&head, 3);
+    
+    printf("Doubly Linked List: ");
+    printList(head);
+    
+    return 0;
+}
+```
+
+### **循环链表（Circular Linked List）**：
+
+1. **特点**：
+   - 最后一个节点的指针指向头节点，形成一个循环。
+   - 可以是循环单链表或循环双链表。
+2. **优点**：
+   - 可以实现循环遍历，适用于需要循环访问的场景。
+3. **缺点**：
+   - 需要特殊处理循环结束的条件，避免无限循环。
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+void append(struct Node** head_ref, int new_data) {
+    struct Node* new_node = (struct Node*)malloc(sizeof(struct Node));
+    struct Node* last = *head_ref;
+    
+    new_node->data = new_data;
+    new_node->next = *head_ref;
+    
+    if (*head_ref == NULL) {
+        *head_ref = new_node;
+        new_node->next = *head_ref;
+    } else {
+        while (last->next != *head_ref) {
+            last = last->next;
+        }
+        last->next = new_node;
+    }
+}
+
+void printList(struct Node* head) {
+    struct Node* temp = head;
+    if (head != NULL) {
+        do {
+            printf("%d -> ", temp->data);
+            temp = temp->next;
+        } while (temp != head);
+    }
+    printf("NULL\n");
+}
+
+int main() {
+    struct Node* head = NULL;
+    
+    append(&head, 1);
+    append(&head, 2);
+    append(&head, 3);
+    
+    printf("Circular Linked List: ");
+    printList(head);
+    
+    return 0;
+}
+```
+
+# **栈**：
+
+- 栈可以使用数组或链表实现，在C语言中通常使用数组来模拟栈。
+
+- 示例：
+
+  ```c
+  #define MAX_SIZE 100
+  int stack[MAX_SIZE];
+  int top = -1; // 栈顶指针初始化为-1
+  
+  // 压栈操作
+  void push(int value) {
+      if (top < MAX_SIZE - 1) {
+          stack[++top] = value;
+      }
+  }
+  
+  // 弹栈操作
+  int pop() {
+      if (top >= 0) {
+          return stack[top--];
+      }
+      return -1; // 表示栈为空
+  }
+  ```
+
+# **队列**：
+
+- 队列可以使用数组或链表实现，在C语言中通常使用数组来模拟队列。
+
+- 示例：
+
+  ```c
+  #define MAX_SIZE 100
+  int queue[MAX_SIZE];
+  int front = 0, rear = -1; // 队头指针和队尾指针
+  
+  // 入队操作
+  void enqueue(int value) {
+      if (rear < MAX_SIZE - 1) {
+          queue[++rear] = value;
+      }
+  }
+  
+  // 出队操作
+  int dequeue() {
+      if (front <= rear) {
+          return queue[front++];
+      }
+      return -1; // 表示队列为空
+  }
+  ```
+
+# **树与二叉树**:
+
+在C语言中，树和二叉树是常见的数据结构，以下是它们的简单示例代码：
+
+###  **树（Tree）**：
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node* left;
+    struct Node* right;
+};
+
+struct Node* createNode(int value) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = value;
+    newNode->left = NULL;
+    newNode->right = NULL;
+    return newNode;
+}
+
+int main() {
+    struct Node* root = createNode(1);
+    root->left = createNode(2);
+    root->right = createNode(3);
+    
+    // 手动构建一个简单的树结构
+    /*
+            1
+           / \
+          2   3
+    */
+    
+    return 0;
+}
+```
+
+### **二叉树（Binary Tree）**：
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node* left;
+    struct Node* right;
+};
+
+struct Node* createNode(int value) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = value;
+    newNode->left = NULL;
+    newNode->right = NULL;
+    return newNode;
+}
+
+int main() {
+    struct Node* root = createNode(1);
+    root->left = createNode(2);
+    root->right = createNode(3);
+    root->left->left = createNode(4);
+    root->left->right = createNode(5);
+    
+    // 手动构建一个简单的二叉树结构
+    /*
+            1
+           / \
+          2   3
+         / \
+        4   5
+    */
+    
+    return 0;
+}
+```
 
