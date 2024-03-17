@@ -9,7 +9,7 @@ categories = [
 tags = [
     "时序"
 ]
-image: 2.jpg
+image = "2.jpg"
 
 +++
 
