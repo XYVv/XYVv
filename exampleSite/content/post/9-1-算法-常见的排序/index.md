@@ -1,7 +1,7 @@
 +++
 author = "xinyu"
 title = "C/C++常见算法排序的实现"
-date = "2024-03-17"
+date = "2024-03-18"
 description = "常见算法排序"
 categories = [
     "算法","排序"
