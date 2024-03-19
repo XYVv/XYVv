@@ -18,7 +18,7 @@ image = "1.jpg"
 > sqlite数据库 / mysql数据库
 > sqlite属于轻量级数据库，广泛应用与嵌入式产品中，本项目中暂且选择sqlite数据库
 >
-> ubuntu环境安装
+> ## ubuntu环境安装
 >
 > 1. ```bash
 >    sudo apt install sqlite3 libsqlite3-dev
@@ -29,31 +29,46 @@ image = "1.jpg"
 >
 > 3. 基本操作
 >
-> 创建数据表格
+> ### 创建数据表格
+>
 > create  table  表名( 字段名 数据类型  ， 字段名 数据类型， 字段名  数据类型， 字段名  数据类型)；
+>
 > create table student(number text(256), name text(256), address text);
 >
-> 插入表格
+> ### 插入表格
+>
 > insert into 表名  values('字段数据'，'字段数据'，'字段数据'，'字段数据' );
+>
 > insert into student values('20230101', '张三', '北京');
+>
 > insert into student values('20230102', '李四', '上海');
 >
-> 查询数据
+> ### 查询数据
+>
 > select  字段名...字段名  from  表名；
+>
 > select * from student ;
+>
 > select name, number from student;
+>
 > select  字段名...字段名  from  表名  where 条件;
 >
-> 更新数据
+> ### 更新数据
+>
 > update 表名 set 字段1=字段1值, 字段2=字段2值… where 条件表达式;
+>
 > update student set number='199999999999' where name='岳飞';
 >
-> 删除数据
+> ### 删除数据
+>
 > delete  from 表名;//删除整个表数据，不会删除表格
+>
 > delete  from 表名  where  条件；
+>
 > delete from student where number='20230103';
 >
-> 查询创建表命令
+> ### 查询创建表命令
+>
 > .schema 表名
 
 # C接口
@@ -100,19 +115,17 @@ SQLITE_API int sqlite3_prepare_v2
 	
 参数列表： 
 	db: 数据库连接对象  表示你得语句将要作用在哪一个数据库上 
-			
 	zSql: 你要执行的SQL语句的字符串格式  
-
-    nByte：SQL语句的长度 或者是 你要编译到zSql字符串的哪一个位置 		
+	nByte：SQL语句的长度 或者是 你要编译到zSql字符串的哪一个位置 		
 		原始的数据库字符串zSql有可能包含多条SQL语句
 
 		>0  编译到zSql指向的sql语句的前nBytes个字节 
 		<0  编译到zSql指向的sql语句的第一个'\0'为止 
 		=0  什么都不编译
 
-	ppStmt：二级指针 用来保存编译好后的SQL语句对象  		
+	ppStmt：二级指针 用来保存编译好后的SQL语句对象
 
-    pzTail ：指向原始SQL语句字符串zSql中未使用的部分 一般给0 或者NULL
+	pzTail ：指向原始SQL语句字符串zSql中未使用的部分 一般给0 或者NULL
 
 返回值： 
 	成功返回SQLITE_OK 
