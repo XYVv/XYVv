@@ -4,7 +4,7 @@ title = "开发工具——sqlite"
 date = "2024-03-19"
 description = "开发工具专题之sqlite"
 categories = [
-    "算法","排序"
+    "开发工具"
 ]
 tags = [
     "开发工具","sqlite"
