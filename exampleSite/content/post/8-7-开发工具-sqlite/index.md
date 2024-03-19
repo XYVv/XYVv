@@ -1,13 +1,13 @@
 +++
 author = "xinyu"
-title = "C/C++常见算法排序的实现"
-date = "2024-03-18"
-description = "常见算法排序"
+title = "开发工具——sqlite"
+date = "2024-03-19"
+description = "开发工具专题之sqlite"
 categories = [
     "算法","排序"
 ]
 tags = [
-    "算法","排序","C","C++"
+    "开发工具","sqlite"
 ]
 image = "1.jpg"
 
